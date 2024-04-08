@@ -1,13 +1,13 @@
 import tkinter as tk
 ''' 
 Components needed for user_interface:
-first screen: choose to study or to review
-second screen: submit question
-third screen: answer question
+1st: choose to study or to review
+2nd: submit question
+3rd: answer question
 '''
 
 # 2nd user screen for adding new questions to the database
-larger_font = ('Calibri', 11)
+display_font = ('Calibri', 11)
 
 
 def submit_question():
@@ -31,6 +31,18 @@ def move_focus(event):
         return "break"  # Prevent default behavior
 
 
+def move_focus_back(event):
+    if event.widget == submit_button and event.keysym == 'Tab' and event.state == 9:  # check if Shift key is pressed
+        answer_entry.focus_set()
+        return "break"  # Prevent default behavior
+    elif event.widget == answer_entry and event.keysym == 'Tab' and event.state == 9:  # check if Shift key is pressed
+        question_entry.focus_set()
+        return "break"  # Prevent default behavior
+    elif event.widget == question_entry and event.keysym == 'Tab' and event.state == 9:  # check if Shift key is pressed
+        submit_button.focus_set()
+        return "break"  # Prevent default behavior
+
+
 def submit(event):
     if event.widget == submit_button and event.keysym == 'Return':
         submit_question()
@@ -41,17 +53,20 @@ root = tk.Tk()
 root.title("Create Q&As for self-study")
 
 # Create labels, fields, and submit button
-question_label = tk.Label(root, text="Question:", font=larger_font)
-answer_label = tk.Label(root, text="Answer:", font=larger_font)
-question_entry = tk.Text(root, height=10, width=80, font=larger_font)
-answer_entry = tk.Text(root, height=10, width=80, font=larger_font)
+question_label = tk.Label(root, text="Question:", font=display_font)
+answer_label = tk.Label(root, text="Answer:", font=display_font)
+question_entry = tk.Text(root, height=10, width=80, font=display_font)
+answer_entry = tk.Text(root, height=10, width=80, font=display_font)
 submit_button = tk.Button(
-    root, text="Submit", command=submit_question, font=larger_font)
+    root, text="Submit", command=submit_question, font=display_font)
 
-# Bind key press events for Tab and Enter
+# Bind key press events
 question_entry.bind("<Tab>", move_focus)
 answer_entry.bind("<Tab>", move_focus)
 submit_button.bind("<Return>", submit)
+question_entry.bind("<Shift-Tab>", move_focus_back)
+answer_entry.bind("<Shift-Tab>", move_focus_back)
+submit_button.bind("<Shift-Tab>", move_focus_back)
 
 # Place widgets using grid layout
 question_label.grid(row=0, column=0, sticky=tk.E)
