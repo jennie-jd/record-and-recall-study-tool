@@ -1,4 +1,5 @@
 import tkinter as tk
+import database
 ''' 
 Components needed for user_interface:
 1st: choose to study or to review
@@ -13,7 +14,8 @@ display_font = ('Calibri', 11)
 def submit_question():
     question = question_entry.get("1.0", 'end-1c')
     answer = answer_entry.get("1.0", 'end-1c')
-    # Add code to store to the database; print statements can be deleted
+    # Store new Q&A to the database; delete print statements after implementation
+    database.store_new_entry(question, answer)
     print("Question:", question)
     print("Answer:", answer)
     # Clear entry fields after submission and move cursor back to question_entry
