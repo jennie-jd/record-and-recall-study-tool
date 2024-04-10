@@ -13,6 +13,9 @@ def delete_entry(id):
     c.execute('''DELETE FROM questions WHERE id = ?''', (id,))
     conn.commit()
 
+def update_entry(id, status):
+    pass
+
 c.execute('''CREATE TABLE IF NOT EXISTS questions
              (id INTEGER PRIMARY KEY AUTOINCREMENT, 
              question TEXT, 
