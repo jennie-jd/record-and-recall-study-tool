@@ -5,6 +5,8 @@ Components needed for user_interface:
 1st: choose to study or to review
 2nd: submit question
 3rd: answer question
+
+To do: add password function in addition to username
 '''
 
 # 2nd user screen for adding new questions to the database
