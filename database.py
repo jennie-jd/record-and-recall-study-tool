@@ -2,7 +2,7 @@ import sqlite3
 
 # Function to create database and tables
 def create_database():
-    conn = sqlite3.connect('example.db')
+    conn = sqlite3.connect('questions.db')
     cursor = conn.cursor()
     cursor.execute('''CREATE TABLE IF NOT EXISTS qa (
                         id INTEGER PRIMARY KEY,
@@ -15,7 +15,7 @@ def create_database():
 
 # Function to insert data into the table
 def insert_data(user, question, answer):
-    conn = sqlite3.connect('example.db')
+    conn = sqlite3.connect('questions.db')
     cursor = conn.cursor()
     cursor.execute("INSERT INTO qa (user, question, answer) VALUES (?, ?, ?)", (user, question, answer))
     conn.commit()
@@ -23,7 +23,7 @@ def insert_data(user, question, answer):
 
 # Function to retrieve data from the table
 def retrieve_data():
-    conn = sqlite3.connect('example.db')
+    conn = sqlite3.connect('questions.db')
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM qa")
     rows = cursor.fetchall()
@@ -32,7 +32,7 @@ def retrieve_data():
 
 # Function to update data in the table
 def update_data(user, new_answer):
-    conn = sqlite3.connect('example.db')
+    conn = sqlite3.connect('questions.db')
     cursor = conn.cursor()
     cursor.execute("UPDATE qa SET answer = ? WHERE user = ?", (new_answer, user))
     conn.commit()
@@ -40,7 +40,7 @@ def update_data(user, new_answer):
 
 # Function to delete data from the table
 def delete_data(user):
-    conn = sqlite3.connect('example.db')
+    conn = sqlite3.connect('questions.db')
     cursor = conn.cursor()
     cursor.execute("DELETE FROM qa WHERE user = ?", (user,))
     conn.commit()
