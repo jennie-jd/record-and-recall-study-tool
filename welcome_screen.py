@@ -8,3 +8,4 @@ To do: add password function in addition to username
 '''
 
 # 1st screen to register users and choose to study or review
+display_font = ('Calibri', 11)
