@@ -7,6 +7,8 @@ import review_screen
 To do: add password function in addition to username
 '''
 
+# In development
+
 # 1st screen to register users and choose to study or review
 display_font = ('Calibri', 11)
 
