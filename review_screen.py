@@ -1,7 +1,7 @@
 import tkinter as tk
 import database
 import welcome_screen
-import study_screen
+# import study_screen
 
 # In development
 
