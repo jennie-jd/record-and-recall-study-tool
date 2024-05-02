@@ -36,30 +36,13 @@ def login(username_entry, password_entry, login_label):
     password = password_entry.get()
     if authenticate(username, password):
         login_label.config(text="Login successful!", fg="green")
-        study_or_review_window(username)
+        # study_screen() # add username for this study person
     else:
         if login_attempts < 5:
             login_label.config(text="Incorrect username or password. Please try again.")
         else:
             login_label.config(text="Too many login attempts. Program will now exit.", fg="red")
             root.after(2000, root.quit)
-
-def study_or_review_window(username):
-    root.destroy()  # Close the login window
-    root = tk.Tk()
-    root.title("Study or Review")
-    root.geometry("300x150")
-
-    label = tk.Label(root, text="Welcome, " + username + "! Choose an option:", font=display_font)
-    label.pack(pady=10)
-
-    study_button = tk.Button(root, text="Study", font=display_font, command=lambda: study_or_review("study"))
-    study_button.pack(pady=5)
-
-    review_button = tk.Button(root, text="Review", font=display_font, command=lambda: study_or_review("review"))
-    review_button.pack(pady=5)
-
-    root.mainloop()
 
 def main():
     global root
