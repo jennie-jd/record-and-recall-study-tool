@@ -1,40 +1,27 @@
 import tkinter as tk
 import database
-import welcome_screen
-# import study_screen
 
-# In development
+def show_next_question():
+    question = "Test question"  # Assuming you have a method to get a random question from the database
+    question_label.config(text=question)
 
-# 3rd user screen for reviewing past questions
-class ReviewScreen(tk.Frame):
-    def __init__(self, master):
-        super().__init__(master)
-        self.master = master
-        self.database = database.Database()  # Assuming you have a Database class in database module
-        self.create_widgets()
+root = tk.Tk()
+root.title("Reviews")
 
-    def create_widgets(self):
-        # Create and place widgets here
-        self.label = tk.Label(self, text="Review Screen")
-        self.label.pack()
+root.geometry("500x400")  # Set the size of the window
 
-        # Example: Displaying past questions from the database
-        past_questions = self.database.get_past_questions()  # Assuming a method get_past_questions() to retrieve past questions
-        for question in past_questions:
-            question_label = tk.Label(self, text=question)
-            question_label.pack()
+question_label = tk.Label(root, text="", height=5, width=50)  # Increase the height and width of the question box
+question_label.pack()
 
-        # Example: Adding a button to go back to the welcome screen
-        self.back_button = tk.Button(self, text="Back to Welcome Screen", command=self.go_to_welcome_screen)
-        self.back_button.pack()
+answer_entry = tk.Text(root, width=50, height=15)  # Use the Text widget for multi-line input
+answer_entry.pack()
 
-    def go_to_welcome_screen(self):
-        self.master.switch_frame(welcome_screen.WelcomeScreen)  # Assuming you have a method switch_frame in your WelcomeScreen class
+next_button = tk.Button(root, text="Next", command=show_next_question, width=10)  # Set the width of the "Next" button
+next_button.pack()
 
-if __name__ == "__main__":
-    app = tk.Tk()
-    app.title("Review Screen")
-    app.geometry("400x300")
-    review_screen = ReviewScreen(app)
-    review_screen.pack(fill="both", expand=True)
-    app.mainloop()
+exit_button = tk.Button(root, text="Exit", command=root.destroy, width=10)  # Set the width of the "Exit" button
+exit_button.pack()
+
+show_next_question()
+
+root.mainloop()
