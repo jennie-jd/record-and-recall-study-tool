@@ -1,9 +1,14 @@
 import tkinter as tk
 import database
+import datetime
 
 def show_next_question():
-    question = "Test question"  # Assuming you have a method to get a random question from the database
+    question = database.get_question()  # Assuming you have a method to get a random question from the database
     question_label.config(text=question)
+    
+    # Update the last access time of the database entry
+    current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    database.update_last_access_time(question, current_time)
 
 root = tk.Tk()
 root.title("Reviews")
