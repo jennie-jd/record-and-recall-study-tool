@@ -51,29 +51,3 @@ def organize_data():
     rows = cursor.fetchall()
     conn.close()
     return rows
-
-# Main code
-if __name__ == "__main__":
-    # Create the database and tables
-    create_database()
-
-    # Insert data into the table
-    insert_data("Mary", "Are you okay?", "Yes, great")
-    insert_data("John", "How are you?", "I'm fine, thank you")
-
-    # Update user priority for Mary
-    update_data("Mary", "Are you okay?", "Yes, great", 1)
-
-    # Retrieve and print data for Mary
-    print("Mary's Questions and Answers:")
-    mary_data = retrieve_data("Mary")
-    for question, answer in mary_data:
-        print("Question:", question)
-        print("Answer:", answer)
-
-    # Organize and print all data based on user priority
-    print("\nOrganized Data Based on User Priority:")
-    organized_data = organize_data()
-    for question, answer in organized_data:
-        print("Question:", question)
-        print("Answer:", answer)
